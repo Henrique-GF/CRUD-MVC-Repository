@@ -1,7 +1,4 @@
-﻿using AppWebMVC.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace AppWebMVC.Repositorio
+﻿namespace EstoqueVeiculo.DataAccess.Repositories
 {
     public interface IRepositorio
     {

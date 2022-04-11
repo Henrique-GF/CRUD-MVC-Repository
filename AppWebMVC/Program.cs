@@ -1,5 +1,6 @@
+using EstoqueVeiculo.DataAccess.Data;
+using EstoqueVeiculo.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
-using AppWebMVC.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 //Sting de conexão com o banco
 builder.Services.AddDbContext<Contexto>
-    (options => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;"));
+    (options => options.UseSqlServer("name=ConnectionStings:DefaultConnection"));
 
 builder.Services.AddScoped<IRepositorio, Repositorio>();
 

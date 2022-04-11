@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace AppWebMVC.Migrations
+namespace EstoqueVeiculo.DataAccess.Migrations
 {
-    public partial class Teste : Migration
+    public partial class TesteDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

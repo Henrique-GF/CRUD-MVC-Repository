@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AppWebMVC.Models
+namespace EstoqueVeiculo.Models
 {
-    [Table("TipoVeiculo")]
     public class TipoVeiculo
     {
         [Key]
         public int Id { get; set; }
-        [Column("Nome"), MaxLength(10)]
+        [Required, MaxLength(10)]
         public string Nome { get; set; }
     }
 }

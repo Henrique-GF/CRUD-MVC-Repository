@@ -1,12 +1,12 @@
-﻿using AppWebMVC.Models;
+﻿using EstoqueVeiculo.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppWebMVC.Repositorio
+namespace EstoqueVeiculo.DataAccess.Data
 {
     public class Contexto : DbContext
     {
 
-        public Contexto(DbContextOptions<Contexto> options) : base(options) {}
+        public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
         public DbSet<Veiculo> Veiculo { get; set; }
         public DbSet<TipoVeiculo> TipoVeiculo { get; set; }
