@@ -4,7 +4,7 @@
 
 namespace EstoqueVeiculo.DataAccess.Migrations
 {
-    public partial class TesteDb : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,7 @@ namespace EstoqueVeiculo.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TipoVeiculoId = table.Column<int>(type: "int", nullable: false),
                     Placa = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
                     Marca = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Modelo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
@@ -37,6 +38,12 @@ namespace EstoqueVeiculo.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Veiculo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Veiculo_TipoVeiculo_TipoVeiculoId",
+                        column: x => x.TipoVeiculoId,
+                        principalTable: "TipoVeiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -53,15 +60,20 @@ namespace EstoqueVeiculo.DataAccess.Migrations
                 table: "TipoVeiculo",
                 columns: new[] { "Id", "Nome" },
                 values: new object[] { 3, "Caminhão" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Veiculo_TipoVeiculoId",
+                table: "Veiculo",
+                column: "TipoVeiculoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TipoVeiculo");
+                name: "Veiculo");
 
             migrationBuilder.DropTable(
-                name: "Veiculo");
+                name: "TipoVeiculo");
         }
     }
 }

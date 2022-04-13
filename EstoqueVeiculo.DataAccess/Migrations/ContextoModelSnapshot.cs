@@ -86,6 +86,9 @@ namespace EstoqueVeiculo.DataAccess.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
+                    b.Property<int>("TipoVeiculoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Versao")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -93,7 +96,20 @@ namespace EstoqueVeiculo.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TipoVeiculoId");
+
                     b.ToTable("Veiculo");
+                });
+
+            modelBuilder.Entity("EstoqueVeiculo.Models.Veiculo", b =>
+                {
+                    b.HasOne("EstoqueVeiculo.Models.TipoVeiculo", "TipoVeiculo")
+                        .WithMany()
+                        .HasForeignKey("TipoVeiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TipoVeiculo");
                 });
 #pragma warning restore 612, 618
         }

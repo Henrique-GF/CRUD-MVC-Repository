@@ -1,59 +1,78 @@
 ﻿using EstoqueVeiculo.DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace EstoqueVeiculo.DataAccess.Repositories
 {
-    public class Repositorio : IRepositorio
+    public class Repositorio<T> : IRepositorio<T> where T : class
     {
         private readonly Contexto _contexto;
+        private readonly DbSet<T> _dbSet;
 
         public Repositorio(Contexto contexto)
         {
             _contexto = contexto;
+            _dbSet = _contexto.Set<T>();
         }
 
         //Add
-        public void Add<T>(T entidade) where T : class
+        public void Add(T entidade)
         {
             _contexto.Add(entidade);
         }
 
         //Update
-        public void Update<T>(T entidade) where T : class
+        public void Update(T entidade)
         {
             _contexto.Update(entidade);
         }
 
         //Remove
-        public void Remove<T>(T entidade) where T : class
+        public void Delete(T entidade)
         {
             _contexto.Remove(entidade);
         }
 
-        //Salva alterações
-        public async Task<bool> SaveChangesAsync()
-        {
-            // Só retona sucesso se houver mudança em pelo menos uma linha
-            return (await _contexto.SaveChangesAsync()) > 0;
-        }
-
 
         //GET: Todos
-        public IEnumerable<T> GetAll<T>() where T : class
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null)
         {
-            return _contexto.Set<T>().AsEnumerable();
+            IQueryable<T> query = _dbSet;
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            if (includeProperties != null)
+            {
+                foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(item);
+                }
+            }
+            return query.ToList();
         }
 
-        public async Task<T> GetById<T>(int id) where T : class
+        public T GetT(Expression<Func<T, bool>> predicate, string? includeProperties = null)
         {
-            return _contexto.Set<T>().Find(id);
+            IQueryable<T> query = _dbSet;
+            query = query.Where(predicate);
+
+            if (includeProperties != null)
+            {
+                foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(item);
+                }
+            }
+            return query.FirstOrDefault();
         }
 
 
 
-        public bool Any<T>(int id) where T : class
+        public bool Any(Expression<Func<T, bool>> predicate)
         {
 
-            return _contexto.Set<T>().Any(e => e.Equals(id));
+            return _dbSet.Any(e => e.Equals(predicate));
         }
     }
 }

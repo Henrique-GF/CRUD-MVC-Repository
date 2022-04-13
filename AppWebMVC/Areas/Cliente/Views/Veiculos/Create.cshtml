@@ -1,18 +1,28 @@
 ﻿@model EstoqueVeiculo.Models.Veiculo
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Edit</h1>
+<h1>Create</h1>
 
 <h4>Veiculo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label class="control-label">Tipo</label>
+                <select asp-for="TipoVeiculoId" class ="form-control">
+                    <option value="">Selecione</option>
+                    @foreach(var item in ViewBag.TipoVeiculoId)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="TipoVeiculoId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label class="control-label">Placa</label>
                 <input asp-for="Placa" class="form-control" />
@@ -43,15 +53,16 @@
                 <input asp-for="AnoModelo" class="form-control" />
                 <span asp-validation-for="AnoModelo" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

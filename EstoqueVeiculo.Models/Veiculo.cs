@@ -9,6 +9,10 @@ namespace EstoqueVeiculo.Models
     {
         [Key, Column("Id")]
         public int Id { get; set; }
+        [ForeignKey("TipoVeiculo")]
+        public int TipoVeiculoId { get; set; }
+        [ValidateNever]
+        public TipoVeiculo TipoVeiculo { get; set; }
         [Required, MaxLength(9)]
         public string Placa { get; set; }
         [Required, MaxLength(20)]
@@ -21,9 +25,6 @@ namespace EstoqueVeiculo.Models
         public int AnoFabricacao { get; set; }
         [Required]
         public int AnoModelo { get; set; }
-        //[ForeignKey("TipoVeiculo")]
-        //public int TipoVeiculoId { get; set; }
-        //[ValidateNever]
-        //public TipoVeiculo TipoVeiculo { get; set; }
+
     }
 }

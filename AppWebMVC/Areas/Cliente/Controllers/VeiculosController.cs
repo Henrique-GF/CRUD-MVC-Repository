@@ -1,35 +1,36 @@
 ﻿using EstoqueVeiculo.DataAccess.Repositories;
+using EstoqueVeiculo.DataAccess.ViewModels;
 using EstoqueVeiculo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppWebMVC.Controllers
+namespace EstoqueVeiculo.Web.Controllers
 {
+    [Area("Cliente")]
     public class VeiculosController : Controller
     {
-        //private readonly Contexto _context;
-        private readonly IRepositorio _repositorio;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public VeiculosController(IRepositorio repositorio)
+        public VeiculosController(IUnitOfWork unitOfWork)
         {
-            //_context = context;
-            _repositorio = repositorio;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Veiculos
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(_repositorio.GetAll<Veiculo>());
+            return View(_unitOfWork.Veiculo.GetAll(includeProperties:"TipoVeiculo"));
         }
 
         // GET: Veiculos/Details
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var veiculo = await _repositorio.GetById<Veiculo>(id.GetValueOrDefault());
+            var veiculo = _unitOfWork.Veiculo.GetT(x => x.Id == id, includeProperties: "TipoVeiculo");
             if (veiculo == null)
             {
                 return NotFound();
@@ -41,20 +42,22 @@ namespace AppWebMVC.Controllers
         // GET: Veiculos/Create
         public IActionResult Create()
         {
+            ViewData["TipoVeiculoId"] = new SelectList(_unitOfWork.TipoVeiculo.GetAll(), "Id", "Nome");
             return View();
         }
 
         // POST: Veiculos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Placa,Marca,Modelo,Versao,AnoFabricacao,AnoModelo")] Veiculo veiculo)
+        public IActionResult Create([Bind("Id,TipoVeiculoId,Placa,Marca,Modelo,Versao,AnoFabricacao,AnoModelo")] Veiculo veiculo)
         {
             if (ModelState.IsValid)
             {
-                _repositorio.Add(veiculo);
-                await _repositorio.SaveChangesAsync();
+                _unitOfWork.Veiculo.Add(veiculo);
+                _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TipoVeiculoId"] = new SelectList(_unitOfWork.TipoVeiculo.GetAll(), "Id", "Nome");
             return View(veiculo);
         }
 
@@ -66,18 +69,19 @@ namespace AppWebMVC.Controllers
                 return NotFound();
             }
 
-            var veiculo = await _repositorio.GetById<Veiculo>(id.GetValueOrDefault());
+            var veiculo = _unitOfWork.Veiculo.GetT(x => x.Id == id);
             if (veiculo == null)
             {
                 return NotFound();
             }
+            ViewData["TipoVeiculoId"] = new SelectList(_unitOfWork.TipoVeiculo.GetAll(), "Id", "Nome");
             return View(veiculo);
         }
 
         // POST: Veiculos/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Placa,Marca,Modelo,Versao,AnoFabricacao,AnoModelo")] Veiculo veiculo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TipoVeiculoId,Placa,Marca,Modelo,Versao,AnoFabricacao,AnoModelo")] Veiculo veiculo)
         {
             if (id != veiculo.Id)
             {
@@ -88,8 +92,8 @@ namespace AppWebMVC.Controllers
             {
                 try
                 {
-                    _repositorio.Update(veiculo);
-                    await _repositorio.SaveChangesAsync();
+                    _unitOfWork.Veiculo.Update(veiculo);
+                    _unitOfWork.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -104,18 +108,19 @@ namespace AppWebMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TipoVeiculoId"] = new SelectList(_unitOfWork.TipoVeiculo.GetAll(), "Id", "Nome");
             return View(veiculo);
         }
 
         // GET: Veiculos/Delete
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var veiculo = await _repositorio.GetById<Veiculo>(id.GetValueOrDefault());
+            var veiculo = _unitOfWork.Veiculo.GetT(x => x.Id == id, includeProperties: "TipoVeiculo");
             if (veiculo == null)
             {
                 return NotFound();
@@ -127,17 +132,17 @@ namespace AppWebMVC.Controllers
         // POST: Veiculos/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var veiculo = await _repositorio.GetById<Veiculo>(id);
-            _repositorio.Remove(veiculo);
-            await _repositorio.SaveChangesAsync();
+            var veiculo = _unitOfWork.Veiculo.GetT(x => x.Id == id);
+            _unitOfWork.Veiculo.Delete(veiculo);
+            _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VeiculoExists(int id)
         {
-            return _repositorio.Any<Veiculo>(id);
+            return _unitOfWork.Veiculo.Any(e => e.Id == id);
         }
     }
 }

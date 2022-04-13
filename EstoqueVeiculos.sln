@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueVeiculos.Web", "AppW
 		{B1B9DC55-48C8-472A-983E-0DBE5B673A52} = {B1B9DC55-48C8-472A-983E-0DBE5B673A52}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueVeiculo.Models", "EstoqueVeiculo.Models\EstoqueVeiculo.Models.csproj", "{83515737-4DFC-448B-BA86-068149A2EF99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueVeiculos.Models", "EstoqueVeiculo.Models\EstoqueVeiculos.Models.csproj", "{83515737-4DFC-448B-BA86-068149A2EF99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueVeiculo.DataAccess", "EstoqueVeiculo.DataAccess\EstoqueVeiculo.DataAccess.csproj", "{B1B9DC55-48C8-472A-983E-0DBE5B673A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueVeiculos.DataAccess", "EstoqueVeiculo.DataAccess\EstoqueVeiculos.DataAccess.csproj", "{B1B9DC55-48C8-472A-983E-0DBE5B673A52}"
 	ProjectSection(ProjectDependencies) = postProject
 		{83515737-4DFC-448B-BA86-068149A2EF99} = {83515737-4DFC-448B-BA86-068149A2EF99}
 	EndProjectSection
