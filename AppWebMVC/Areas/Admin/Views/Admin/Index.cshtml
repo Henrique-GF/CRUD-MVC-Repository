@@ -1,11 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
 }
 
 <div class="text-center">
     <h1 class="display-4">Admin</h1>
 </div>
 <br />
-<p>
-    <a class="nav-link text-dark" asp-area="Admin" asp-controller="TiposVeiculo" asp-action="Index">Tipos</a>
-</p>
+
+<ul>
+   <li><p><a asp-area="Admin" asp-controller="Produtos" asp-action="Index">Produtos</a></p></li>
+   <li><p><a asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categorias</a></p></li>
+</ul>

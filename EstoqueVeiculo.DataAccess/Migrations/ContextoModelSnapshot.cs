@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EstoqueVeiculo.DataAccess.Migrations
+namespace EstoqueVeiculos.DataAccess.Migrations
 {
     [DbContext(typeof(Contexto))]
     partial class ContextoModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace EstoqueVeiculo.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("EstoqueVeiculo.Models.TipoVeiculo", b =>
+            modelBuilder.Entity("EstoqueVeiculo.Models.Categoria", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,32 +31,32 @@ namespace EstoqueVeiculo.DataAccess.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoVeiculo");
+                    b.ToTable("Categoria");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Nome = "Carro"
+                            Nome = "Informática"
                         },
                         new
                         {
                             Id = 2,
-                            Nome = "Moto"
+                            Nome = "Móveis"
                         },
                         new
                         {
                             Id = 3,
-                            Nome = "Caminhão"
+                            Nome = "Moda"
                         });
                 });
 
-            modelBuilder.Entity("EstoqueVeiculo.Models.Veiculo", b =>
+            modelBuilder.Entity("EstoqueVeiculo.Models.Produto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,51 +65,44 @@ namespace EstoqueVeiculo.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AnoFabricacao")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("AnoModelo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Marca")
+                    b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Modelo")
+                    b.Property<bool>("Destaque")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Placa")
+                    b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("TipoVeiculoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Versao")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<float>("Preco")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TipoVeiculoId");
+                    b.HasIndex("CategoriaId");
 
-                    b.ToTable("Veiculo");
+                    b.ToTable("Produto");
                 });
 
-            modelBuilder.Entity("EstoqueVeiculo.Models.Veiculo", b =>
+            modelBuilder.Entity("EstoqueVeiculo.Models.Produto", b =>
                 {
-                    b.HasOne("EstoqueVeiculo.Models.TipoVeiculo", "TipoVeiculo")
+                    b.HasOne("EstoqueVeiculo.Models.Categoria", "Categoria")
                         .WithMany()
-                        .HasForeignKey("TipoVeiculoId")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TipoVeiculo");
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

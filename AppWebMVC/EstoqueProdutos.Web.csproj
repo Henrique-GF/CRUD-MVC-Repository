@@ -28,11 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EstoqueVeiculo.DataAccess\EstoqueVeiculos.DataAccess.csproj" />
+    <ProjectReference Include="..\EstoqueVeiculo.DataAccess\EstoqueProdutos.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
 </Project>

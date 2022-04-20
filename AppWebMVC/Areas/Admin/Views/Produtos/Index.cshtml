@@ -1,34 +1,29 @@
-﻿@model IEnumerable<EstoqueVeiculo.Models.Veiculo>
+﻿@model IEnumerable<EstoqueVeiculo.Models.Produto>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Veículos</h1>
+<h1>Produtos</h1>
 
 <p>
     <a asp-action="Create">Criar novo</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                Tipo
+                Categoria
             </th>
             <th>
-                Placa
+                Nome
             </th>
             <th>
-                Marca
+                Preço
             </th>
             <th>
-                Modelo
-            </th>
-            <th>
-                Versão
-            </th>
-            <th>
-                Ano
+                Descrição
             </th>
             <th></th>
         </tr>
@@ -37,22 +32,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.TipoVeiculo.Nome
+                @item.Categoria.Nome
             </td>
             <td>
-                @item.Placa
+                @item.Nome
             </td>
             <td>
-                @item.Marca
+                @item.Preco
             </td>
             <td>
-                @item.Modelo
-            </td>
-            <td>
-                @item.Versao
-            </td>
-            <td>
-                @item.AnoFabricacao/ @item.AnoModelo
+                @item.Descricao
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

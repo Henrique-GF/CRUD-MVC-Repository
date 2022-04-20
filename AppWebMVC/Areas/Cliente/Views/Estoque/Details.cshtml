@@ -1,0 +1,41 @@
+﻿@model EstoqueVeiculo.DataAccess.ViewModels.EstoqueViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Produto</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Tipo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produto.Categoria.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            Placa
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produto.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            Marca
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produto.Preco)
+        </dd>
+        <dt class = "col-sm-2">
+            Modelo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Produto.Descricao)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>

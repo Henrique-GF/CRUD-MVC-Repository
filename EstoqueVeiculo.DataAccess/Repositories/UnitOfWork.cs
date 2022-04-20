@@ -11,13 +11,13 @@ namespace EstoqueVeiculo.DataAccess.Repositories
     {
         private readonly Contexto _contexto;
 
-        public IVeiculoRepositorio Veiculo { get; private set; }
-        public ITipoVeiculoRepositorio TipoVeiculo { get; private set; }
+        public IProdutoRepositorio Produto { get; private set; }
+        public ICategoriaRepositorio Categoria { get; private set; }
         public UnitOfWork(Contexto contexto)
         {
             _contexto = contexto;
-            Veiculo = new VeiculoRepositorio(contexto);
-            TipoVeiculo = new TipoVeiculoRepositorio(contexto);
+            Produto = new ProdutoRepositorio(contexto);
+            Categoria = new CategoriaRepositorio(contexto);
         }
         public void Save()
         {

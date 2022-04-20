@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace EstoqueVeiculos.Web.Controllers
+namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class TiposVeiculoController : Controller
+    public class CategoriasController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public TiposVeiculoController(IUnitOfWork unitOfWork)
+        public CategoriasController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -20,7 +20,7 @@ namespace EstoqueVeiculos.Web.Controllers
         // GET: Veiculos
         public IActionResult Index()
         {
-            return View(_unitOfWork.TipoVeiculo.GetAll());
+            return View(_unitOfWork.Categoria.GetAll());
         }
 
         // GET: Veiculos/Create
@@ -32,15 +32,15 @@ namespace EstoqueVeiculos.Web.Controllers
         // POST: Veiculos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Nome")] TipoVeiculo tipoVeiculo)
+        public IActionResult Create([Bind("Id,Nome")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.TipoVeiculo.Add(tipoVeiculo);
+                _unitOfWork.Categoria.Add(categoria);
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
-            return View(tipoVeiculo);
+            return View(categoria);
         }
 
         // GET: Veiculos/Edit
@@ -51,20 +51,20 @@ namespace EstoqueVeiculos.Web.Controllers
                 return NotFound();
             }
 
-            var tipoVeiculo = _unitOfWork.TipoVeiculo.GetT(x => x.Id == id);
-            if (tipoVeiculo == null)
+            var categoria = _unitOfWork.Categoria.GetT(x => x.Id == id);
+            if (categoria == null)
             {
                 return NotFound();
             }
-            return View(tipoVeiculo);
+            return View(categoria);
         }
 
         // POST: Veiculos/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] TipoVeiculo tipoVeiculo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Categoria categoria)
             {
-            if (id != tipoVeiculo.Id)
+            if (id != categoria.Id)
             {
                 return NotFound();
             }
@@ -73,12 +73,12 @@ namespace EstoqueVeiculos.Web.Controllers
             {
                 try
                 {
-                    _unitOfWork.TipoVeiculo.Update(tipoVeiculo);
+                    _unitOfWork.Categoria.Update(categoria);
                     _unitOfWork.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VeiculoExists(tipoVeiculo.Id))
+                    if (!CategoriaExists(categoria.Id))
                     {
                         return NotFound();
                     }
@@ -89,7 +89,7 @@ namespace EstoqueVeiculos.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tipoVeiculo);
+            return View(categoria);
         }
 
         // GET: Veiculos/Delete
@@ -100,13 +100,13 @@ namespace EstoqueVeiculos.Web.Controllers
                 return NotFound();
             }
 
-            var tipoVeiculo = _unitOfWork.TipoVeiculo.GetT(x => x.Id == id);
-            if (tipoVeiculo == null)
+            var categoria = _unitOfWork.Categoria.GetT(x => x.Id == id);
+            if (categoria == null)
             {
                 return NotFound();
             }
 
-            return View(tipoVeiculo);
+            return View(categoria);
         }
 
         // POST: Veiculos/Delete
@@ -114,15 +114,15 @@ namespace EstoqueVeiculos.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            var tipoVeiculo = _unitOfWork.TipoVeiculo.GetT(x => x.Id == id);
-            _unitOfWork.TipoVeiculo.Delete(tipoVeiculo);
+            var categoria = _unitOfWork.Categoria.GetT(x => x.Id == id);
+            _unitOfWork.Categoria.Delete(categoria);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VeiculoExists(int id)
+        private bool CategoriaExists(int id)
         {
-            return _unitOfWork.TipoVeiculo.Any(e => e.Id == id);
+            return _unitOfWork.Categoria.Any(e => e.Id == id);
         }
     }
 }

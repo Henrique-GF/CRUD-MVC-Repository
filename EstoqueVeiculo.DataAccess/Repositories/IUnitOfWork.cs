@@ -8,8 +8,8 @@ namespace EstoqueVeiculo.DataAccess.Repositories
 {
     public interface IUnitOfWork
     {
-        IVeiculoRepositorio Veiculo { get; }
-        ITipoVeiculoRepositorio TipoVeiculo { get; }
+        IProdutoRepositorio Produto { get; }
+        ICategoriaRepositorio Categoria { get; }
         void Save();
     }
 }

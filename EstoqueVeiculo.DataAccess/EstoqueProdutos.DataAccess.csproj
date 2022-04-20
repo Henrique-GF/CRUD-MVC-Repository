@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EstoqueVeiculo.Models\EstoqueVeiculos.Models.csproj" />
+    <ProjectReference Include="..\EstoqueVeiculo.Models\EstoqueProdutos.Models.csproj" />
   </ItemGroup>
 
 </Project>

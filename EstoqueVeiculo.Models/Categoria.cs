@@ -2,11 +2,11 @@
 
 namespace EstoqueVeiculo.Models
 {
-    public class TipoVeiculo
+    public class Categoria
     {
         [Key]
         public int Id { get; set; }
-        [Required, MaxLength(10)]
+        [Required, MaxLength(20)]
         public string Nome { get; set; }
     }
 }

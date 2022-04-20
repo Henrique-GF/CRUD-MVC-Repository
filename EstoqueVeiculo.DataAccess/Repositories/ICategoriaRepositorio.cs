@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EstoqueVeiculo.DataAccess.Repositories
 {
-    public interface ITipoVeiculoRepositorio : IRepositorio<TipoVeiculo>
+    public interface ICategoriaRepositorio : IRepositorio<Categoria>
     {
-        void Update(TipoVeiculo tipoVeiculo);
+        void Update(Categoria tipoVeiculo);
     }
 }
