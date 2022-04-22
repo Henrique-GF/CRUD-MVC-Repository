@@ -26,6 +26,7 @@ namespace EstoqueVeiculos.Web.Areas.Cliente.Controllers
             if(!string.IsNullOrEmpty(Request.Query["Categoria"].ToString()))
             {
                 estoqueViewModel.Categorias = _unitOfWork.Categoria.GetAll(x => x.Nome == Request.Query["Categoria"].ToString());
+                estoqueViewModel.Categoria = _unitOfWork.Categoria.GetT(x => x.Nome == Request.Query["Categoria"].ToString());
             }
             else
             {
@@ -34,7 +35,9 @@ namespace EstoqueVeiculos.Web.Areas.Cliente.Controllers
             
             estoqueViewModel.Produtos = _unitOfWork.Produto.GetAll();
 
-            ViewData["Categorias"] = new SelectList(_unitOfWork.Categoria.GetAll(), "Nome", "Nome");
+            
+
+            ViewData["Categoria"] = new SelectList(_unitOfWork.Categoria.GetAll(), "Nome", "Nome");
             return View(estoqueViewModel);
         }
 

@@ -64,6 +64,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function ValidateEmpty()
     {
@@ -73,7 +74,7 @@
               icon: 'error',
               title: 'Oops...',
               text: 'Selecione uma imagem',
-              footer: '<a href="">Why do I have this issue?</a>'
+              footer: ''
             })
             return false;
         }

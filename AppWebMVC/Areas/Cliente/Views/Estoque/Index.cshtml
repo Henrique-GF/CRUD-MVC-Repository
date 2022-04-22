@@ -9,42 +9,47 @@
 </div>
 <br />
 <h2>Categoria</h2>
-@using (Html.BeginForm("Index", "Estoque", FormMethod.Get))
-{
-    <select class ="form-control" name="Categoria" id="Categoria">
-        <option value="">Selecione</option>
-        @foreach(var item in ViewBag.Categorias)
+<form asp-action="Index" method="get">
+    <select asp-for="Categoria" class ="form-control" name="Categoria">
+        <option value="">Todos</option>
+        @foreach(var item in ViewBag.Categoria)
         {
-            <option value="@item.Value">@item.Text</option>
+            @if(Model.Categoria.Nome == item.Value)
+            {
+                <option selected value="@item.Value">@item.Text</option>
+            }else{
+                <option value="@item.Value">@item.Text</option>
+            }
         }
     </select>
     <div class="form-group">
         <input type="submit" value="Filtrar" class="btn btn-primary" />
     </div>
-}
+</form>
 <br />
-@foreach (var tipo in Model.Categorias)
+@if(Model.Categorias.Count() > 0)
 {
-    @if(Model.Produtos.Any(x => x.CategoriaId == tipo.Id) == true)
-    {
-        <h2>@tipo.Nome</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        Preço
-                    </th>
-                    <th>
-                        Descrição
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Produtos.Where(x => x.CategoriaId == @tipo.Id))
+    <h2>Produtos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Preço
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var categoria in Model.Categorias)
+            {
+                @foreach (var item in Model.Produtos.Where(x => x.CategoriaId == categoria.Id))
                 {
                     <tr>
                         <td>
@@ -64,8 +69,8 @@
                         </td>
                     </tr>
                 }
-            </tbody>
-        </table>
-        <br />
-    }
+            }
+        </tbody>
+    </table>
+    <br />
 }
