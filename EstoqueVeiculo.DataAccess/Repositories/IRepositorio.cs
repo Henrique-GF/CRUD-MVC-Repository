@@ -1,13 +1,13 @@
-﻿namespace EstoqueVeiculo.DataAccess.Repositories
+﻿using System.Linq.Expressions;
+
+namespace EstoqueVeiculo.DataAccess.Repositories
 {
-    public interface IRepositorio
+    public interface IRepositorio<T> where T : class
     {
-        void Add<T>(T entidade) where T : class;
-        void Update<T>(T entidade) where T : class;
-        void Remove<T>(T entidade) where T : class;
-        Task<bool> SaveChangesAsync();
-        IEnumerable<T> GetAll<T>() where T : class;
-        Task<T> GetById<T>(int id) where T : class;
-        bool Any<T>(int id) where T : class;
+        void Add(T entidade);
+        void Delete(T entidade);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null);
+        T GetT(Expression<Func<T, bool>> predicate, string? includeProperties = null);
+        bool Any(Expression<Func<T, bool>> predicate);
     }
 }

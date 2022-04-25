@@ -8,30 +8,29 @@ namespace EstoqueVeiculo.DataAccess.Data
 
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
-        public DbSet<Veiculo> Veiculo { get; set; }
-        public DbSet<TipoVeiculo> TipoVeiculo { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<TipoVeiculo>()
+            builder.Entity<Categoria>()
                 .HasData(new
                 {
                     Id = 1,
-                    Nome = "Carro"
+                    Nome = "Informática"
                 });
-            builder.Entity<TipoVeiculo>()
+            builder.Entity<Categoria>()
                 .HasData(new
                 {
                     Id = 2,
-                    Nome = "Moto"
+                    Nome = "Móveis"
                 });
-            builder.Entity<TipoVeiculo>()
+            builder.Entity<Categoria>()
                 .HasData(new
                 {
                     Id = 3,
-                    Nome = "Caminhão"
+                    Nome = "Moda"
                 });
-
         }
     }
 }

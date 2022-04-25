@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Contexto>
     (options => options.UseSqlServer("name=ConnectionStings:DefaultConnection"));
 
-builder.Services.AddScoped<IRepositorio, Repositorio>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -34,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Cliente}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

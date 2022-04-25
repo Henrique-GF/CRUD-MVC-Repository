@@ -1,0 +1,76 @@
+﻿@model EstoqueVeiculo.DataAccess.ViewModels.EstoqueViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+<h1 class="display-4">Estoque</h1>
+</div>
+<br />
+<h2>Categoria</h2>
+<form asp-action="Index" method="get">
+    <select asp-for="Categoria" class ="form-control" name="Categoria">
+        <option value="">Todos</option>
+        @foreach(var item in ViewBag.Categoria)
+        {
+            @if(Model.Categoria.Nome == item.Value)
+            {
+                <option selected value="@item.Value">@item.Text</option>
+            }else{
+                <option value="@item.Value">@item.Text</option>
+            }
+        }
+    </select>
+    <div class="form-group">
+        <input type="submit" value="Filtrar" class="btn btn-primary" />
+    </div>
+</form>
+<br />
+@if(Model.Categorias.Count() > 0)
+{
+    <h2>Produtos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Preço
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var categoria in Model.Categorias)
+            {
+                @foreach (var item in Model.Produtos.Where(x => x.CategoriaId == categoria.Id))
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ImageUrl" width="100" height=100/>
+                        </td>
+                        <td>
+                            @item.Nome
+                        </td>
+                        <td>
+                            R$@item.Preco
+                        </td>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <br />
+}
