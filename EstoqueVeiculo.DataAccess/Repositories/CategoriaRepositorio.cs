@@ -1,12 +1,12 @@
-﻿using EstoqueVeiculo.DataAccess.Data;
-using EstoqueVeiculo.Models;
+﻿using EstoqueProdutos.Models;
+using EstoqueProdutos.DataAccess.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstoqueVeiculo.DataAccess.Repositories
+namespace EstoqueProdutos.DataAccess.Repositories
 {
     public class CategoriaRepositorio : Repositorio<Categoria>, ICategoriaRepositorio
     {

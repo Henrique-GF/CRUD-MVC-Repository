@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace EstoqueVeiculo.DataAccess.Repositories
+namespace EstoqueProdutos.DataAccess.Repositories
 {
     public interface IRepositorio<T> where T : class
     {

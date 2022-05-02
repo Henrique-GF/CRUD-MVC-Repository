@@ -1,13 +1,15 @@
-﻿using EstoqueVeiculo.DataAccess.Repositories;
-using EstoqueVeiculo.DataAccess.ViewModels;
-using EstoqueVeiculo.Models;
+﻿using EstoqueProdutos.DataAccess.Repositories;
+using EstoqueProdutos.DataAccess.ViewModels;
+using EstoqueProdutos.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
+namespace EstoqueProdutos.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ProdutosController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

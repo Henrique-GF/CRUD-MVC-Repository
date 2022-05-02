@@ -1,11 +1,11 @@
-﻿using EstoqueVeiculo.DataAccess.Data;
+﻿using EstoqueProdutos.DataAccess.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstoqueVeiculo.DataAccess.Repositories
+namespace EstoqueProdutos.DataAccess.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -13,11 +13,13 @@ namespace EstoqueVeiculo.DataAccess.Repositories
 
         public IProdutoRepositorio Produto { get; private set; }
         public ICategoriaRepositorio Categoria { get; private set; }
+        public IUsuarioRepositorio Usuario { get; private set; }
         public UnitOfWork(Contexto contexto)
         {
             _contexto = contexto;
             Produto = new ProdutoRepositorio(contexto);
             Categoria = new CategoriaRepositorio(contexto);
+            Usuario = new UsuarioRepositorio(contexto);
         }
         public void Save()
         {

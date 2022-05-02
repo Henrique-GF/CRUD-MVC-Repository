@@ -1,22 +1,19 @@
-﻿@model IEnumerable<EstoqueProdutos.Models.Categoria>
+﻿@model IEnumerable<IdentityUser>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Categorias</h1>
+<h1>Usuários</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Novo Usuário</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                ID
-            </th>
-            <th>
-                Nome
+                Usuario
             </th>
             <th></th>
         </tr>
@@ -25,10 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.Id
-            </td>
-            <td>
-                @item.Nome
+                @item.UserName
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

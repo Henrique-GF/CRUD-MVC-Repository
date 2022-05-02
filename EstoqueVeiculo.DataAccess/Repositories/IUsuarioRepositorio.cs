@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace EstoqueProdutos.DataAccess.Repositories
 {
-    public interface IProdutoRepositorio : IRepositorio<Produto>
+    public interface IUsuarioRepositorio : IRepositorio<Usuario>
     {
-        void Update(Produto veiculo);
+        void Update(Usuario usuario);
+
+        Usuario GetByCredentials(string usuario, string senha);
     }
 }

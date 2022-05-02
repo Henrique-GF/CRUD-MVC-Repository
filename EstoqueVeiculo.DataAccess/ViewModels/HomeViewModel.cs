@@ -1,18 +1,17 @@
-﻿using EstoqueVeiculo.Models;
+﻿using EstoqueProdutos.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EstoqueVeiculo.DataAccess.ViewModels
+namespace EstoqueProdutos.DataAccess.ViewModels
 {
     public class HomeViewModel
     {
         public IEnumerable<Produto> Destaques = new List<Produto>();
-        public IEnumerable<Produto> Produtos = new List<Produto>();
-        public Produto MaiorPreco = new Produto();
-        public Produto MenorPreco = new Produto();
+        public Produto MaiorPreco = null;
+        public Produto MenorPreco = null;
         public IEnumerable<Categoria> Categorias { get; set; } = new List<Categoria>();
     }
 }

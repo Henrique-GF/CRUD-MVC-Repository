@@ -1,4 +1,4 @@
-﻿@model EstoqueProdutos.Models.Categoria
+﻿@model EstoqueProdutos.Models.Usuario
 
 @{
     ViewData["Title"] = "Delete";
@@ -6,22 +6,28 @@
 
 <h1>Deletar</h1>
 
-<h3>Tem certeza que quer deletar essa categoria?</h3>
+<h3>Tem certeza que quer deletar esse Usuário?</h3>
 <div>
-    <h4>Categoria</h4>
+    <h4>Usuário</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             Id
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+            @Model.Id
         </dd>
         <dt class = "col-sm-2">
-            Tipo
+            Usuário
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
+            @Model.Nome
+        </dd>
+        <dt class = "col-sm-2">
+            Senha
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Nome
         </dd>
     </dl>
     <br />

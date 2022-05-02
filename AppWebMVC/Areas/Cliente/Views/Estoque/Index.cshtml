@@ -1,4 +1,4 @@
-﻿@model EstoqueVeiculo.DataAccess.ViewModels.EstoqueViewModel
+﻿@model EstoqueProdutos.DataAccess.ViewModels.EstoqueViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -34,6 +34,9 @@
         <thead>
             <tr>
                 <th>
+                    Imagem
+                </th>
+                <th>
                     Nome
                 </th>
                 <th>
@@ -59,7 +62,7 @@
                             @item.Nome
                         </td>
                         <td>
-                            R$@item.Preco
+                            R$ @item.Preco.ToString("N2")
                         </td>
                         <td>
                             @item.Descricao

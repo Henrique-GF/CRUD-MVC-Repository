@@ -1,4 +1,4 @@
-﻿namespace EstoqueVeiculo.Models
+﻿namespace EstoqueProdutos.Models
 {
     public class ErrorViewModel
     {

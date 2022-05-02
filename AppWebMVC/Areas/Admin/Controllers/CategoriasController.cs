@@ -1,13 +1,14 @@
-﻿using EstoqueVeiculo.DataAccess.Repositories;
-using EstoqueVeiculo.DataAccess.ViewModels;
-using EstoqueVeiculo.Models;
+﻿  using EstoqueProdutos.DataAccess.Repositories;
+using EstoqueProdutos.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
+namespace EstoqueProdutos.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoriasController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -17,19 +18,19 @@ namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        // GET: Veiculos
+        // GET: Categorias
         public IActionResult Index()
         {
             return View(_unitOfWork.Categoria.GetAll());
         }
 
-        // GET: Veiculos/Create
+        // GET: Categorias/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Veiculos/Create
+        // POST: Categorias/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,Nome")] Categoria categoria)
@@ -43,7 +44,7 @@ namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        // GET: Veiculos/Edit
+        // GET: Categorias/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -59,7 +60,7 @@ namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        // POST: Veiculos/Edit
+        // POST: Categorias/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Categoria categoria)
@@ -92,7 +93,7 @@ namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        // GET: Veiculos/Delete
+        // GET: Categorias/Delete
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,7 +110,7 @@ namespace EstoqueVeiculos.Web.Areas.Admin.Controllers
             return View(categoria);
         }
 
-        // POST: Veiculos/Delete
+        // POST: Categorias/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
