@@ -1,6 +1,6 @@
-﻿using EstoqueVeiculo.DataAccess.Repositories;
-using EstoqueVeiculo.Models;
-using EstoqueVeiculo.DataAccess.ViewModels;
+﻿using EstoqueProdutos.DataAccess.Repositories;
+using EstoqueProdutos.Models;
+using EstoqueProdutos.DataAccess.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -23,7 +23,6 @@ namespace EstoqueVeiculos.Web.Areas.Cliente.Controllers
             HomeViewModel homeViewModel = new HomeViewModel();
             homeViewModel.Categorias = _unitOfWork.Categoria.GetAll();
             homeViewModel.Destaques = _unitOfWork.Produto.GetAll(x => x.Destaque==true);
-            homeViewModel.Produtos = _unitOfWork.Produto.GetAll();
             homeViewModel.MaiorPreco = _unitOfWork.Produto.GetAll().MaxBy(x => x.Preco);
             homeViewModel.MenorPreco = _unitOfWork.Produto.GetAll().MinBy(x => x.Preco);
             return View(homeViewModel);

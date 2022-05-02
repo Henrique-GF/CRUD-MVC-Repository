@@ -1,0 +1,52 @@
+﻿@model EstoqueProdutos.DataAccess.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    var returnUrl = "";
+    if(Context.Request.Query.ContainsKey("returnUrl"))
+    {
+        returnUrl = Context.Request.Query["returnUrl"].ToString();
+    }
+}
+
+<h1>Login</h1>
+
+<h4>Conta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login" method="post">
+            <div class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Usuário</label>
+                <input asp-for="Usuario" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Senha</label>
+                <input type="password" asp-for="Senha" class="form-control" />
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Lembrar" /> Lembrar de mim
+                </label>
+            </div>
+            <input type="hidden" asp-for="ReturnUrl" name="ReturnUrl" id="ReturnUrl" value="@returnUrl" />
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Entrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="RedefinirSenha">Esqueci minha senha</a>
+</div>
+<br />
+<div>
+    <a href="~/Cliente/Home/Index">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

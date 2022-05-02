@@ -1,8 +1,8 @@
-﻿using EstoqueVeiculo.DataAccess.Data;
+﻿using EstoqueProdutos.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace EstoqueVeiculo.DataAccess.Repositories
+namespace EstoqueProdutos.DataAccess.Repositories
 {
     public class Repositorio<T> : IRepositorio<T> where T : class
     {

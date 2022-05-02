@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EstoqueVeiculo.Models
+namespace EstoqueProdutos.Models
 {
     public class Categoria
     {

@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace EstoqueVeiculos.DataAccess.Migrations
+namespace EstoqueProdutos.DataAccess.Migrations
 {
-    public partial class InitiaDb : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,6 +19,20 @@ namespace EstoqueVeiculos.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categoria", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuario",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,17 +62,17 @@ namespace EstoqueVeiculos.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Categoria",
                 columns: new[] { "Id", "Nome" },
-                values: new object[] { 1, "Informática" });
+                values: new object[,]
+                {
+                    { 1, "Informática" },
+                    { 2, "Móveis" },
+                    { 3, "Moda" }
+                });
 
             migrationBuilder.InsertData(
-                table: "Categoria",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 2, "Móveis" });
-
-            migrationBuilder.InsertData(
-                table: "Categoria",
-                columns: new[] { "Id", "Nome" },
-                values: new object[] { 3, "Moda" });
+                table: "Usuario",
+                columns: new[] { "Id", "Nome", "Senha" },
+                values: new object[] { 1, "admin", "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Produto_CategoriaId",
@@ -70,6 +84,9 @@ namespace EstoqueVeiculos.DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Produto");
+
+            migrationBuilder.DropTable(
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Categoria");

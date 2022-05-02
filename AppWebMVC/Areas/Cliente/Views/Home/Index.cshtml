@@ -1,4 +1,4 @@
-﻿@model EstoqueVeiculo.DataAccess.ViewModels.HomeViewModel
+﻿@model EstoqueProdutos.DataAccess.ViewModels.HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -45,7 +45,7 @@
                         @item.Nome
                     </td>
                     <td>
-                        R$@item.Preco
+                        R$ @item.Preco.ToString("N2")
                     </td>
                     <td>
                         @item.Descricao
@@ -59,7 +59,7 @@
     </table>
     <br />
 }
-@if(Model.Produtos.Any(x => x.Id == Model.MaiorPreco.Id))
+@if(Model.MaiorPreco != null)
 {
     <div class="text-center">
 
@@ -93,7 +93,7 @@
                         @Model.MaiorPreco.Nome
                     </td>
                     <td>
-                        R$@Model.MaiorPreco.Preco
+                        R$ @Model.MaiorPreco.Preco.ToString("N2")
                     </td>
                     <td>
                         @Model.MaiorPreco.Descricao
@@ -106,7 +106,7 @@
     </table>
     <br />
 }
-@if(Model.Produtos.Any(x => x.Id == Model.MenorPreco.Id))
+@if(Model.MenorPreco != null)
 {
     <div class="text-center">
         <h1>Menor Preço</h1>
@@ -139,7 +139,7 @@
                         @Model.MenorPreco.Nome
                     </td>
                     <td>
-                        R$@Model.MenorPreco.Preco
+                        R$@Model.MenorPreco.Preco.ToString("N2")
                     </td>
                     <td>
                         @Model.MenorPreco.Descricao

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EstoqueVeiculo.Models.Produto>
+﻿@model IEnumerable<EstoqueProdutos.Models.Produto>
 
 @{
     ViewData["Title"] = "Index";
@@ -38,7 +38,7 @@
                 @item.Nome
             </td>
             <td>
-                @item.Preco
+                R$ @item.Preco.ToString("N2")
             </td>
             <td>
                 @item.Descricao

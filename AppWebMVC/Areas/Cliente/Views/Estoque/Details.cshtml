@@ -1,4 +1,4 @@
-﻿@model EstoqueVeiculo.DataAccess.ViewModels.EstoqueViewModel
+﻿@model EstoqueProdutos.DataAccess.ViewModels.EstoqueViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -20,25 +20,25 @@
             Categoria
         </dt>
         <dd class = "col-sm-10">
-            @Model.Produto.Categoria.Nome)
+            @Model.Produto.Categoria.Nome
         </dd>
         <dt class = "col-sm-2">
             Nome
         </dt>
         <dd class = "col-sm-10">
-            @Model.Produto.Nome)
+            @Model.Produto.Nome
         </dd>
         <dt class = "col-sm-2">
             Preço
         </dt>
         <dd class = "col-sm-10">
-            @Model.Produto.Preco)
+            R$ @Model.Produto.Preco.ToString("N2")
         </dd>
         <dt class = "col-sm-2">
             Descrição
         </dt>
         <dd class = "col-sm-10">
-            @Model.Produto.Descricao)
+            @Model.Produto.Descricao
         </dd>
     </dl>
 </div>
