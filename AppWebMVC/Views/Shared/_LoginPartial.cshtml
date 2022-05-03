@@ -7,7 +7,10 @@
 @if (Context.User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" href="~/Admin/Admin/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        <a class="nav-link text-dark">Hello @User.Identity?.Name!</a>
+    </li>
+    <li class="nav-item">
+        <a  class="nav-link text-dark" href="~/Admin/Admin/Index" title="Manage">Admin</a>
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Admin" asp-Controller="Admin" asp-action="Logout">

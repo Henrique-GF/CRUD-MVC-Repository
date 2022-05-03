@@ -1,8 +1,8 @@
 using EstoqueProdutos.DataAccess.Data;
 using EstoqueProdutos.DataAccess.Repositories;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Admin/Admin/Login";
 });
+
+builder.Services.AddLogging();
 
 var app = builder.Build();
 
