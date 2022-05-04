@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 namespace EstoqueProdutos.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class UsuariosController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -18,8 +17,9 @@ namespace EstoqueProdutos.Web.Areas.Admin.Controllers
         {
             _userManager = userManager;
         }
-
+        
         // GET: Usuarios
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var usuarios = await _userManager.Users.AsNoTracking().ToListAsync();
@@ -71,6 +71,7 @@ namespace EstoqueProdutos.Web.Areas.Admin.Controllers
         }
 
         // GET: Categorias/Edit
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -132,6 +133,7 @@ namespace EstoqueProdutos.Web.Areas.Admin.Controllers
         }
 
         // GET: Categorias/Delete
+        [Authorize]
         public async Task<IActionResult> Delete(string? id)
         {
             if (id == null)

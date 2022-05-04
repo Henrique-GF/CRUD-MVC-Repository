@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstoqueProdutos.DataAccess.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220428044413_v1")]
-    partial class v1
+    [Migration("20220503204458_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

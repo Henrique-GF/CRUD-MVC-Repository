@@ -7,9 +7,14 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
-
-//String de conexão com o banco
+//String de conexï¿½o com o banco
 builder.Services.AddDbContext<Contexto>
     (options => options.UseSqlServer("name=ConnectionStings:DefaultConnection"));
 
@@ -27,8 +32,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Admin/Admin/Login";
 });
-
-builder.Services.AddLogging();
 
 var app = builder.Build();
 
