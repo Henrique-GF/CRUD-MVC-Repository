@@ -1,0 +1,72 @@
+﻿@model EstoqueProdutos.DataAccess.ViewModels.ProdutoViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Produtos</h1>
+
+<p>
+    <a asp-action="Create">Criar novo</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Imagem
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Preço
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Produtos) 
+    {
+        <div style="display:none;">
+            @(Model.Imagem = Model.Imagens.Where(x => x.ProdutoId == item.Id).FirstOrDefault())
+        </div>
+        <tr> 
+            @if (Model.Imagem != null)
+            {
+                <td>
+                    <img src=@Model.Imagem.ImageUrl width="100" height=100/>
+                </td>
+            }
+            else
+            {
+                <td></td>
+            }
+            <td>
+                @item.Categoria.Nome
+            </td>
+            <td>
+                @item.Nome
+            </td>
+            <td>
+                R$ @item.Preco.ToString("N2")
+            </td>
+            <td>
+                @item.Descricao
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+        @(Model.Imagem = null)
+    }
+    </tbody>
+</table>
