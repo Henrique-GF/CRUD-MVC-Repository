@@ -1,0 +1,84 @@
+﻿@model EstoqueProdutos.DataAccess.ViewModels.ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Produto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Categoria</label>
+                <select asp-for="Produto.CategoriaId" class ="form-control">
+                    <option value="">Selecione</option>
+                    @foreach(var item in ViewBag.Categorias)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Produto.CategoriaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nome</label>
+                <input asp-for="Produto.Nome" class="form-control" />
+                <span asp-validation-for="Produto.Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Preço</label>
+                <input asp-for="Produto.Preco" class="form-control" />
+                <span asp-validation-for="Produto.Preco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Descrição</label>
+                <input asp-for="Produto.Descricao" class="form-control" />
+                <span asp-validation-for="Produto.Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Imagem</label>
+                <input type="hidden" asp-for="Imagem.ImageUrl" />
+                <input type="file" id="ImageFile" name="files" class="form-select" multiple/>
+                <span asp-validation-for="Imagem.ImageUrl" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Produto.Destaque" /> Destaque
+                </label>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function ValidateEmpty()
+    {
+        if(document.getElementById("ImageFile")=="")
+        {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Selecione uma imagem',
+              footer: ''
+            })
+            return false;
+        }
+        return true;
+    }
+</script>

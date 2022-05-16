@@ -3,18 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.Web", "AppWebMVC\EstoqueProdutos.Web.csproj", "{CA7AD78A-14CB-4019-8541-3892884D89D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.Web", "EstoqueProdutos.Web\EstoqueProdutos.Web.csproj", "{CA7AD78A-14CB-4019-8541-3892884D89D3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{83515737-4DFC-448B-BA86-068149A2EF99} = {83515737-4DFC-448B-BA86-068149A2EF99}
 		{B1B9DC55-48C8-472A-983E-0DBE5B673A52} = {B1B9DC55-48C8-472A-983E-0DBE5B673A52}
+		{883C89E3-C494-4B4A-B141-7742875F64AF} = {883C89E3-C494-4B4A-B141-7742875F64AF}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.Models", "EstoqueVeiculo.Models\EstoqueProdutos.Models.csproj", "{83515737-4DFC-448B-BA86-068149A2EF99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.Models", "EstoqueProdutos.Models\EstoqueProdutos.Models.csproj", "{83515737-4DFC-448B-BA86-068149A2EF99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.DataAccess", "EstoqueVeiculo.DataAccess\EstoqueProdutos.DataAccess.csproj", "{B1B9DC55-48C8-472A-983E-0DBE5B673A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.DataAccess", "EstoqueProdutos.DataAccess\EstoqueProdutos.DataAccess.csproj", "{B1B9DC55-48C8-472A-983E-0DBE5B673A52}"
 	ProjectSection(ProjectDependencies) = postProject
 		{83515737-4DFC-448B-BA86-068149A2EF99} = {83515737-4DFC-448B-BA86-068149A2EF99}
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstoqueProdutos.Domain", "EstoqueProdutos.Domain\EstoqueProdutos.Domain.csproj", "{883C89E3-C494-4B4A-B141-7742875F64AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +37,10 @@ Global
 		{B1B9DC55-48C8-472A-983E-0DBE5B673A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1B9DC55-48C8-472A-983E-0DBE5B673A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1B9DC55-48C8-472A-983E-0DBE5B673A52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883C89E3-C494-4B4A-B141-7742875F64AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883C89E3-C494-4B4A-B141-7742875F64AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883C89E3-C494-4B4A-B141-7742875F64AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883C89E3-C494-4B4A-B141-7742875F64AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
